@@ -7,8 +7,7 @@ import './main.html';
 Meteor.startup(function(){
   var mouseX = window.innerWidth / 2;
   var mouseY = window.innerHeight / 2;
-  var lastScrolledLeft = 0;
-  var lastScrolledTop = 0;
+  var $shine = $('.shine')
 
   var helpers = {
     getViewportDimensions: function() {
@@ -37,22 +36,22 @@ Meteor.startup(function(){
     mouseY = e.pageY;
   };
 
-  var getScrolledMousePosition = function() {
-    var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-    var scrollLeft = document.documentElement.scrollLeft || document.body.scrollLeft;
-    if (lastScrolledLeft !== scrollLeft) {
-      mouseX -= lastScrolledLeft;
-      lastScrolledLeft = scrollLeft;
-      mouseX += lastScrolledLeft;
-    }
-    if (lastScrolledTop !== scrollTop) {
-      mouseY -= lastScrolledTop;
-      lastScrolledTop = scrollTop;
-      mouseY += lastScrolledTop;
-    }
-  }
+
 
   var rotateCard = function(cardEl) {
+    //shine
+    w = $(window).width(), //window width
+    h = $(window).height(); //window height
+    dy = mouseY - h / 2, //@h/2 = center of poster
+    dx = mouseX - w / 2, //@w/2 = center of poster
+    theta = Math.atan2(dy, dx), //angle between cursor and center of poster in RAD
+    angle = theta * 180 / Math.PI - 90 //convert rad in degrees
+    if (angle < 0) {
+      angle = angle + 360;
+    }
+    $shine.css('background', 'linear-gradient(' + angle + 'deg, rgba(255,255,255,' + 0.30 + ') 0%,rgba(255,255,255,0) 80%)');
+
+
     var photoEl = cardEl.querySelector('.photo');
     var shadowEl = cardEl.querySelector('.photo-shadow');
     var angle = 40;
@@ -88,7 +87,7 @@ Meteor.startup(function(){
   }
 
   var tick = function() {
-    getScrolledMousePosition();
+    // getScrolledMousePosition();
     rotateCards();
     requestAnimationFrame(tick);
   }
