@@ -12,6 +12,9 @@ body {
 
 .container {
   text-align: center;
+  /*border: solid 1px blue;*/
+  width: 300px;
+  margin: 0 auto;
 }
 
 .shine {
@@ -31,13 +34,17 @@ body {
   height: 100%;
   perspective: 1000px;
   transform: translate3d(0,0,0);
+  /*border: red 1px solid;*/
 }
 
 .plan {
   transform-origin: center;
-  height: 50%;
+}
+
+.card {
+  /*padding: 100px;*/
 }
 
 img {
-  /*width: 65%;*/
+  width: 100%;
 }

@@ -49,7 +49,8 @@ Meteor.startup(function(){
     if (angle < 0) {
       angle = angle + 360;
     }
-    $shine.css('background', 'linear-gradient(' + angle + 'deg, rgba(255,255,255,' + 0.30 + ') 0%,rgba(255,255,255,0) 80%)');
+    $shine.css('background', 'linear-gradient(' + angle + 'deg, rgba(255,255,255,' + 0.20 + ') 0%,rgba(255,255,255,0) 80%)');
+    // $shine.css('background', 'linear-gradient(' + angle + 'deg, rgba(255,255,255,' + mouseY / h + ') 0%,rgba(255,255,255,0) 80%)');
 
 
     var photoEl = cardEl.querySelector('.photo');
